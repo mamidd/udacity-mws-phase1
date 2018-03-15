@@ -141,10 +141,15 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.name;
+  addSrcSet(image);
   li.append(image);
 
   const name = document.createElement('h1');
-  name.innerHTML = restaurant.name;
+  let innerA = document.createElement('a');
+  innerA.innerHTML = restaurant.name;
+  innerA.href = DBHelper.urlForRestaurant(restaurant);
+  name.appendChild(innerA);
   li.append(name);
 
   const neighborhood = document.createElement('p');
@@ -158,9 +163,17 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute("aria-hidden", "true");
   li.append(more)
-
+                  
   return li
+}
+
+addSrcSet = (image) => {
+  let fileParts = image.src.split(".");
+  image.src = fileParts[0] + "-small_1x.jpg";
+  image.srcset = fileParts[0] + "-small_1x.jpg 1x,";
+  image.srcset = image.srcset + fileParts[0] + "-small_2x.jpg 2x";
 }
 
 /**

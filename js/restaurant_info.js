@@ -55,9 +55,10 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
-  const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  const picture = document.getElementById('restaurant-img');
+  picture.className = 'restaurant-img'
+  picture.src = DBHelper.imageUrlForRestaurant(restaurant);
+  setPicture(picture, restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -68,6 +69,31 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
   // fill reviews
   fillReviewsHTML();
+}
+
+setPicture = (picture, restaurant) => {
+  let fileParts = picture.src.split(".");
+
+  let image = document.createElement("img");
+  image.src = fileParts[0] + "-small_1x.jpg";
+  image.alt = restaurant.name;
+
+  let sources = [
+    document.createElement("source"),
+    document.createElement("source"),
+    document.createElement("source")
+  ]
+  sources[0].media = "(min-width: 375px)";
+  sources[0].srcset = fileParts[0] + "-small_2x.jpg";
+  sources[1].media = "(min-width: 675px) and (max-width: 750px)";
+  sources[1].srcset = fileParts[0] + ".jpg";
+  sources[2].media = "(min-width: 750px)";
+  sources[2].srcset = fileParts[0] + "-small_2x.jpg";
+
+  picture.appendChild(sources[2]);
+  picture.appendChild(sources[1]);
+  picture.appendChild(sources[0]);
+  picture.appendChild(image);
 }
 
 /**
