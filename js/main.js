@@ -145,7 +145,7 @@ createRestaurantHTML = (restaurant) => {
   addSrcSet(image);
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   let innerA = document.createElement('a');
   innerA.innerHTML = restaurant.name;
   innerA.href = DBHelper.urlForRestaurant(restaurant);
@@ -165,7 +165,7 @@ createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   more.setAttribute("aria-hidden", "true");
   li.append(more)
-                  
+
   return li
 }
 
