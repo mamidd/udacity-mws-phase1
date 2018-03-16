@@ -10,6 +10,7 @@
   <link rel="stylesheet" src="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
   <!-- Main CSS file -->
   <link rel="stylesheet" href="css/styles.css">
+  <script charset="utf-8" src="js/swController.js"></script>
   <title>Restaurant Info</title>
 </head>
 
@@ -19,14 +20,14 @@
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
+      <!-- Beginning breadcrumb -->
+      <div class="breadcrumb-container">
+        <ul id="breadcrumb" class="breadcrumb">
+          <li><a href="/">Home</a></li>
+        </ul>
+      </div>
+      <!-- End breadcrumb -->
     </nav>
-    <!-- Beginning breadcrumb -->
-    <div class="breadcrumb-container">
-      <ul id="breadcrumb" class="breadcrumb">
-        <li><a href="/">Home</a></li>
-      </ul>
-    </div>
-    <!-- End breadcrumb -->
     <!-- End nav -->
   </header>
   <!-- End header -->
@@ -43,7 +44,7 @@
 
       <!-- Beginning map -->
       <section id="map-container" class="map-container">
-        <div id="map" class="map"></div>
+        <div id="map" class="map" role="application" aria-label="Google Maps with restaurants"></div>
       </section>
       <!-- End map -->
     </article>
